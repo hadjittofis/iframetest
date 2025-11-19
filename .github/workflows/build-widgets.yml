@@ -1,0 +1,81 @@
+name: Build Widgets
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight UTC
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      RSPM: https://packagemanager.rstudio.com/cran/__linux__/jammy/latest
+      R_LIBS_USER: /home/runner/work/_temp/Library
+      TZ: UTC
+      _R_CHECK_SYSTEM_CLOCK_: FALSE
+      NOT_CRAN: true
+      RENV_CONFIG_REPOS_OVERRIDE: https://packagemanager.rstudio.com/cran/__linux__/jammy/latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.2.0' # Or 'latest'
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libcurl4-openssl-dev \
+            libssl-dev \
+            libxml2-dev \
+            pandoc \
+            build-essential
+
+      - name: Install R dependencies
+        run: |
+          mkdir -p "$R_LIBS_USER"
+          R -e "install.packages(c('httr', 'jsonlite', 'dplyr', 'tidyr', 'plotly', 'htmlwidgets', 'here', 'sodium', 'lubridate'), lib = Sys.getenv('R_LIBS_USER'), repos = Sys.getenv('RSPM'))"
+
+      - name: Run all R scripts in 'scripts' folder
+        run: |
+          SCRIPT_DIR="scripts"
+          
+          if [ ! -d "$SCRIPT_DIR" ]; then
+            echo "Error: Directory '$SCRIPT_DIR' not found. Please create it or adjust the path."
+            exit 1
+          fi
+
+          R_SCRIPTS=$(find "$SCRIPT_DIR" -maxdepth 1 -type f \( -name "*.R" -o -name "*.r" \) | sort)
+
+          if [ -z "$R_SCRIPTS" ]; then
+            echo "No R scripts found in '$SCRIPT_DIR'. Skipping R script execution."
+          else
+            for script_path in $R_SCRIPTS; do
+              echo "--- Running R script: $script_path ---"
+              Rscript "$script_path"
+              # Check the exit status of the Rscript command
+              if [ $? -ne 0 ]; then
+                echo "--- Error: Script $script_path failed. Aborting further script execution. ---"
+                exit 1 # Fail the job immediately if any script fails
+              fi
+              echo "--- Successfully ran $script_path ---"
+            done
+          fi
+
+      - name: Commit generated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs logs
+          git commit -m "Generate HTML widgets for GitHub Pages" || echo "No changes to commit"
+          git push origin main || echo "No changes to push"
