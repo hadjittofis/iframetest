@@ -207,6 +207,8 @@ if (status == 1) {
         b = 50,
         t = 50
       ),
+      # paper_bgcolor = 'red',
+      # plot_bgcolor = 'white',
       hoverlabel = list(
         bgcolor = "white",      
         font = list(color = "#17375E"),
@@ -254,9 +256,46 @@ if (status == 1) {
   
   # fig
   
-  htmlwidgets::saveWidget(fig, paste0(graph_dir,"/",html_fname), 
+  
+  htmlwidgets::saveWidget(fig, paste0(graph_dir,"/noborder_",html_fname), 
                           libdir="lib", selfcontained = FALSE)
   cat(paste0("#### Graph saved to: ", graph_dir,"/",html_fname,"\n"))
+  
+  
+  
+  # bordered_div <- tags$div(
+  #   style = "border: 3px solid black; width: fit-content",
+  #   fig
+  # )
+  # htmltools::save_html(
+  #   html = bordered_div, 
+  #   file = paste0(graph_dir,"/test",html_fname)
+  # )
+  
+  
+  
+  fig_with_border <- htmlwidgets::onRender(
+    x = fig,
+    jsCode = "
+    function(el, x) {
+      el.parentElement.style.border = '3px solid black';
+      var mainSvg = el.querySelector('.main-svg');
+      if (mainSvg) {
+        mainSvg.style.width = '99%';
+        mainSvg.style.height = '99%';
+        Plotly.relayout(el, {}); 
+      }
+    }
+  "
+  )
+  
+  htmlwidgets::saveWidget(
+    widget = fig_with_border,
+    file = paste0(graph_dir,"/",html_fname),
+    selfcontained = TRUE
+  )
+  
+  # fig_with_border
   
 }
 
@@ -273,3 +312,4 @@ cat("################################################\n")
 cat("\n")
 
 closeAllConnections()
+
