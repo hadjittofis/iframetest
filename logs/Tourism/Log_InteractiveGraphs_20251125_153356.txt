@@ -1,0 +1,38 @@
+
+################################################
+### CREATE INTERACTIVE GRAPHS FROM CYSTAT DB ###
+################################################
+
+
+Start Time:  2025-11-25 15:33:56.62208
+
+[01] Get API metadata... 
+
+[02] Get API data... 
+      - Build API query... 
+      - Get data via API... 
+      - Data in tabular format... 
+Warning message:
+In pxweb_as_data_frame.pxweb_data(x, row.names = row.names, optional = optional,  :
+  NAs introduced by coercion
+          used (Mb) gc trigger  (Mb) max used (Mb)
+Ncells 1024124 54.7    2081991 111.2  1342997 71.8
+Vcells 2502403 19.1    8388608  64.0  3697326 28.3
+
+[03] Hashing data and comparing to prev version... 
+      - Current Hash... 
+      - Previous Hashes... 
+      -- Current Hash == Previous hash, hence do NOT re-create graph 
+          used (Mb) gc trigger  (Mb) max used (Mb)
+Ncells 1062580 56.8    2081991 111.2  1342997 71.8
+Vcells 2613754 20.0    8388608  64.0  3697326 28.3
+
+
+
+END Time: 2025-11-25 15:33:58.822001
+Time taken for code to run: 2.19992089271545 secs
+
+FINISHED!
+
+################################################
+
