@@ -292,6 +292,7 @@ if (status == 1) {
   htmlwidgets::saveWidget(
     widget = fig_with_border,
     file = paste0(graph_dir,"/",html_fname),
+    libdir="lib",
     selfcontained = TRUE
   )
   
