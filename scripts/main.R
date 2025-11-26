@@ -281,11 +281,11 @@ if (status == 1) {
       el.parentElement.style.border = '3px solid black';
       el.parentElement.style.marginLeft = '100px';
       el.parentElement.style.marginRight = '100px';
-      //var mainSvg = el.querySelector('.main-svg');
-      //if (mainSvg) {
-      //  mainSvg.style.width = '99%';
-      //  mainSvg.style.height = '99%';
-      //}
+      var mainSvg = el.querySelector('.main-svg');
+      if (mainSvg) {
+        mainSvg.style.width = '98%';
+        mainSvg.style.height = '98%';
+      }
       Plotly.relayout(el, {}); 
     }
   "
