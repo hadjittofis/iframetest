@@ -43,13 +43,14 @@ cystat_db   <- "https://cystatdb23px.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/"
 # ##############################################################################
 # [C] SETUP PATHS
 dir.create( graph_dir <- here::here("docs/"), recursive=TRUE, showWarnings=FALSE)
-dir.create( logs_dir <- here::here("logs/",subtheme,"/"), recursive=TRUE, showWarnings=FALSE)
-csv_changes <- paste0(logs_dir,"/DT_Hashes.csv")
+dir.create( logs_gen <- here::here("logs/"), recursive=TRUE, showWarnings=FALSE)
+dir.create( logs_dir <- here::here(logs_gen, subtheme,"/"), recursive=TRUE, showWarnings=FALSE)
+csv_changes <- paste0(logs_gen,"/DT_Hashes.csv")
 
 
 # ##############################################################################
 # [C] LOGS
-logfile <- file(paste0(logs_dir,"/Log_InteractiveGraphs_",datetime,".txt"))
+logfile <- file(paste0(logs_dir,"/Log_Graph_",subtheme,"_",datetime,".txt"))
 sink(logfile, append = FALSE, type = c("output"), split=FALSE)
 sink(logfile, append = FALSE, type = c("message"), split=FALSE)
 
@@ -254,25 +255,6 @@ if (status == 1) {
       )
     )
   
-  # fig
-  
-  
-  htmlwidgets::saveWidget(fig, paste0(graph_dir,"/noborder_",html_fname), 
-                          libdir="lib", selfcontained = FALSE)
-  cat(paste0("#### Graph saved to: ", graph_dir,"/",html_fname,"\n"))
-  
-  
-  
-  # bordered_div <- tags$div(
-  #   style = "border: 3px solid black; width: fit-content",
-  #   fig
-  # )
-  # htmltools::save_html(
-  #   html = bordered_div, 
-  #   file = paste0(graph_dir,"/test",html_fname)
-  # )
-  
-  
   
   fig_with_border <- htmlwidgets::onRender(
     x = fig,
@@ -308,7 +290,15 @@ if (status == 1) {
   "
   )
   
-  fig_with_border
+  # fig
+  # fig_with_border
+  
+  htmlwidgets::saveWidget(
+    widget = fig,
+    file = paste0(graph_dir,"/noborder_",html_fname),
+    libdir="lib",
+    selfcontained = TRUE
+  )
   
   htmlwidgets::saveWidget(
     widget = fig_with_border,
@@ -316,8 +306,7 @@ if (status == 1) {
     libdir="lib",
     selfcontained = TRUE
   )
-  
-
+  cat(paste0("#### Graph saved to: ", graph_dir,"/",html_fname,"\n"))
   
 }
 
