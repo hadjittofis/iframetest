@@ -5,7 +5,7 @@
 start_time <- Sys.time()
 datetime <- format(start_time,"%Y%m%d_%H%M%S")
 
-pckgs <- c("data.table","plotly","dplyr", "httr", "here", "pxweb", "htmltools", "htmlwidgets", "sodium")
+pckgs <- c('data.table','plotly','dplyr', 'httr', 'here', 'pxweb', 'htmltools', 'htmlwidgets', 'sodium')
 if( length(setdiff(pckgs, rownames(installed.packages()))) > 0 ){
   toinstall <- setdiff( pckgs, rownames(installed.packages()))
   cat(paste0("   --> Will be installing the following packages: '",paste(toinstall,collapse="' + '"),"'\n"))
