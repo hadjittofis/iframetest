@@ -50,8 +50,8 @@ csv_changes <- paste0(logs_dir,"/DT_Hashes.csv")
 # ##############################################################################
 # [C] LOGS
 logfile <- file(paste0(logs_dir,"/Log_InteractiveGraphs_",datetime,".txt"))
-# sink(logfile, append = FALSE, type = c("output"), split=FALSE)
-# sink(logfile, append = FALSE, type = c("message"), split=FALSE)
+sink(logfile, append = FALSE, type = c("output"), split=FALSE)
+sink(logfile, append = FALSE, type = c("message"), split=FALSE)
 
 cat("\n")
 cat("################################################\n")
@@ -254,7 +254,7 @@ if (status == 1) {
       )
     )
   
-  fig
+  # fig
   
   
   htmlwidgets::saveWidget(fig, paste0(graph_dir,"/noborder_",html_fname), 
@@ -291,7 +291,7 @@ if (status == 1) {
   "
   )
   
-  fig_with_border
+  # fig_with_border
   
   htmlwidgets::saveWidget(
     widget = fig_with_border,
