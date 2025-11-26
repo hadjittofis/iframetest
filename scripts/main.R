@@ -278,20 +278,37 @@ if (status == 1) {
     x = fig,
     jsCode = "
     function(el, x) {
+      // Apply border and margins to the container element
       el.parentElement.style.border = '3px solid black';
       el.parentElement.style.marginLeft = '100px';
       el.parentElement.style.marginRight = '100px';
+      el.parentElement.style.marginTop = '10px';
+      el.parentElement.style.marginBottom = '10px';
+      
       var mainSvg = el.querySelector('.main-svg');
       if (mainSvg) {
-        mainSvg.style.width = '98%';
+        mainSvg.style.width = '98%'; 
         mainSvg.style.height = '98%';
       }
-      Plotly.relayout(el, {}); 
+    
+      // Force Plotly to recalculate its layout based on the parent's new dimensions
+      // Use a timeout as a final safeguard, though it might not be necessary now.
+      var fixLayout = function() {
+        Plotly.relayout(el, {});
+        
+        if (window.dispatchEvent) {
+          window.dispatchEvent(new Event('resize'));
+        } else { // For older IE
+          window.fireEvent('onresize');
+        }
+      };
+      
+      setTimeout(fixLayout, 50);
     }
   "
   )
   
-  # fig_with_border
+  fig_with_border
   
   htmlwidgets::saveWidget(
     widget = fig_with_border,
