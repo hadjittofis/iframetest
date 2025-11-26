@@ -39,6 +39,10 @@ col_trnsp_renameto    <- c("Perc", "Number")
 html_fname  <- paste0(subtheme,".html")
 cystat_db   <- "https://cystatdb23px.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/"
 
+# -- Graph options...
+figure_border_css <- '3px solid black'
+margins_clockwise_frmTop <- c('10px','100px','10px','100px')
+
 
 # ##############################################################################
 # [C] SETUP PATHS
@@ -166,14 +170,15 @@ if (status == 1) {
   }
   
   fig <- plot_ly() %>%
+    config(locale = 'el') %>%
     add_trace(
       data = dt,
       x = ~Date,
       y = ~Number,
-      text = ~format(Date,"%b %Y"),
+      # text = ~format(Date,"%b %Y"),
       hovertemplate = paste0(
-        "<b>Μήνας:</b> %{text}<br>",
-        "<b>Αριθμός:</b> %{y:.2r}<br>",
+        # "<b>Μήνας:</b> %{text}<br>",
+        "<b>Αριθμός:</b> %{y:.2r}",
         "<extra></extra>"
       ),
       type = 'scatter',
@@ -187,6 +192,12 @@ if (status == 1) {
       data = dt,
       x = ~Date,
       y = ~Perc,
+      # text = ~format(Date,"%b %Y"),
+      hovertemplate = paste0(
+        # "<b>Μήνας:</b> %{text}<br>",
+        "<b>Ετήσια Μεταβολή:</b> %{y:.2r}%",
+        "<extra></extra>"
+      ),
       type = 'scatter',
       mode = 'lines+markers',
       name = "Ετήσια μεταβολή (%)",
@@ -195,7 +206,7 @@ if (status == 1) {
       visible = FALSE
     ) %>%
     layout(
-      title = list(text=col_value),
+      title = list(text="Αφίξεις Τουριστών, Μηνιαίες"),
       showlegend=FALSE,
       font = list(
         family = "Verdana",
@@ -208,8 +219,7 @@ if (status == 1) {
         b = 50,
         t = 50
       ),
-      # paper_bgcolor = 'red',
-      # plot_bgcolor = 'white',
+      hovermode = "x unified",
       hoverlabel = list(
         bgcolor = "white",      
         font = list(color = "#17375E"),
@@ -235,9 +245,17 @@ if (status == 1) {
       ),
       xaxis = list(
         title = "Μήνας",
+        hoverformat = "%B %Y",
         range = c(initial_start, initial_end),
         fixedrange = FALSE,
         tickangle = -45,
+        showspikes = TRUE,
+        spikemode = "across",
+        spikesnap = 'data',
+        spikecolor = "#17375E",
+        spikethickness = 3,
+        spikedash = "solid",
+        
         rangeslider = list(
           visible = TRUE,
           type = "date",
@@ -258,47 +276,81 @@ if (status == 1) {
   
   fig_with_border <- htmlwidgets::onRender(
     x = fig,
-    jsCode = "
-    function(el, x) {
-      // Apply border and margins to the container element
-      el.parentElement.style.border = '3px solid black';
-      el.parentElement.style.marginLeft = '100px';
-      el.parentElement.style.marginRight = '100px';
-      el.parentElement.style.marginTop = '10px';
-      el.parentElement.style.marginBottom = '10px';
-      
-      var mainSvg = el.querySelector('.main-svg');
-      if (mainSvg) {
-        mainSvg.style.width = '98%'; 
-        mainSvg.style.height = '98%';
-      }
-    
-      // Force Plotly to recalculate its layout based on the parent's new dimensions
-      // Use a timeout as a final safeguard, though it might not be necessary now.
-      var fixLayout = function() {
-        Plotly.relayout(el, {});
+    jsCode = paste0("
+      function(el, x) {
+        // Apply border and margins to the container element
+        el.parentElement.style.border = '",figure_border_css,"';
         
-        if (window.dispatchEvent) {
-          window.dispatchEvent(new Event('resize'));
-        } else { // For older IE
-          window.fireEvent('onresize');
+        el.parentElement.style.marginTop = '",margins_clockwise_frmTop[1],"';
+        el.parentElement.style.marginRight = '",margins_clockwise_frmTop[2],"';
+        el.parentElement.style.marginBottom = '",margins_clockwise_frmTop[3],"';
+        el.parentElement.style.marginLeft = '",margins_clockwise_frmTop[4],"';
+        
+        var mainSvg = el.querySelector('.main-svg');
+        if (mainSvg) {
+          mainSvg.style.width = '98%'; 
+          mainSvg.style.height = '98%';
         }
-      };
       
-      setTimeout(fixLayout, 50);
-    }
-  "
+        // Force Plotly to recalculate its layout based on the parent's new dimensions
+        // Use a timeout as a final safeguard, though it might not be necessary now.
+        var fixLayout = function() {
+          Plotly.relayout(el, {});
+          
+          if (window.dispatchEvent) {
+            window.dispatchEvent(new Event('resize'));
+          } else { // For older IE
+            window.fireEvent('onresize');
+          }
+        };
+        
+        setTimeout(fixLayout, 50);
+      }
+    "
+    )
   )
   
-  # fig
+  fig_with_border_nomarg <- htmlwidgets::onRender(
+    x = fig,
+    jsCode = paste0("
+      function(el, x) {
+        // Apply border and margins to the container element
+        el.parentElement.style.border = '",figure_border_css,"';
+        
+        var mainSvg = el.querySelector('.main-svg');
+        if (mainSvg) {
+          mainSvg.style.width = '98%'; 
+          mainSvg.style.height = '98%';
+        }
+      
+        // Force Plotly to recalculate its layout based on the parent's new dimensions
+        // Use a timeout as a final safeguard, though it might not be necessary now.
+        var fixLayout = function() {
+          Plotly.relayout(el, {});
+          
+          if (window.dispatchEvent) {
+            window.dispatchEvent(new Event('resize'));
+          } else { // For older IE
+            window.fireEvent('onresize');
+          }
+        };
+        
+        setTimeout(fixLayout, 50);
+      }
+    "
+    )
+  )
+  
+  fig
   # fig_with_border
+  # fig_with_border_nomarg
   
-  htmlwidgets::saveWidget(
-    widget = fig,
-    file = paste0(graph_dir,"/noborder_",html_fname),
-    libdir="lib",
-    selfcontained = TRUE
-  )
+  # htmlwidgets::saveWidget(
+  #   widget = fig,
+  #   file = paste0(graph_dir,"/noborder_",html_fname),
+  #   libdir="lib",
+  #   selfcontained = TRUE
+  # )
   
   htmlwidgets::saveWidget(
     widget = fig_with_border,
@@ -306,6 +358,14 @@ if (status == 1) {
     libdir="lib",
     selfcontained = TRUE
   )
+  
+  htmlwidgets::saveWidget(
+    widget = fig_with_border_nomarg,
+    file = paste0(graph_dir,"/nomargin_",html_fname),
+    libdir="lib",
+    selfcontained = TRUE
+  )
+  
   cat(paste0("#### Graph saved to: ", graph_dir,"/",html_fname,"\n"))
   
 }
