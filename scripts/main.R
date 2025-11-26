@@ -42,7 +42,12 @@ cystat_db   <- "https://cystatdb23px.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/"
 # -- Graph options...
 figure_border_css <- '3px solid black'
 margins_clockwise_frmTop <- c('10px','100px','10px','100px')
-
+buttons_to_remove <- c(
+  'zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 
+  'zoomOut2d', 'autoScale2d', 'resetScale2d', 
+  'hoverClosestCartesian', 'hoverCompareCartesian', 
+  'sendDataToCloud'
+)
 
 # ##############################################################################
 # [C] SETUP PATHS
@@ -169,8 +174,30 @@ if (status == 1) {
     initial_end   <- as.character(dt[nrows,Date])
   }
   
+  
+  cystatdb_icon <- 'M 786 554 v 267 q 0 15 -11 26 t -25 10 h -214 v -214 h -143 v 214 h -214 q -15 0 -25 -10 t -11 -26 v -267 q 0 -1 0 -2 t 0 -2 l 321 -264 321 264 q 1 1 1 4 z m 124 -39 l -34 41 q -5 5 -12 6 h -2 q -7 0 -12 -3 l -386 -322 -386 322 q -7 4 -13 4 -7 -2 -12 -7 l -35 -41 q -4 -5 -3 -13 t 6 -12 l 401 -334 q 18 -15 42 -15 t 43 15 l 136 114 v -109 q 0 -8 -5 -13 t -13 -5 h 107 q 8 0 13 5 t 5 13 v 227 l 122 102 q 5 5 6 12 t -4 13 z'
+  # fa_database_path <- 'M464 160c0-26.5-28.9-48-64.4-48h-335.2C28.9 112 0 133.5 0 160v256C0 442.5 28.9 464 64.4 464h335.2C435.1 464 464 442.5 464 416V160zm0 352v256c0 26.5-28.9 48-64.4 48h-335.2C28.9 872 0 850.5 0 824V512c0-26.5 28.9-48 64.4-48h335.2C435.1 464 464 485.5 464 512zm0 352v256c0 26.5-28.9 48-64.4 48h-335.2C28.9 1232 0 1210.5 0 1184V880c0-26.5 28.9-48 64.4-48h335.2C435.1 832 464 853.5 464 880z'
+  # fa_database_separated_path <- 'M464 160c0-26.5-28.9-48-64.4-48h-335.2C28.9 112 0 133.5 0 160v256C0 442.5 28.9 464 64.4 464h335.2C435.1 464 464 442.5 464 416V160zm0 460v256c0 26.5-28.9 48-64.4 48h-335.2C28.9 972 0 950.5 0 924V612c0-26.5 28.9-48 64.4-48h335.2C435.1 564 464 585.5 464 612zm0 468v256c0 26.5-28.9 48-64.4 48h-335.2C28.9 1332 0 1310.5 0 1284V1080c0-26.5 28.9-48 64.4-48h335.2C435.1 1032 464 1053.5 464 1080z'
+  # fa_database_fixed_separation_path <- 'M464 160c0-26.5-28.9-48-64.4-48h-335.2C28.9 112 0 133.5 0 160v256C0 442.5 28.9 464 64.4 464h335.2C435.1 464 464 442.5 464 416V160zm0 542v256c0 26.5-28.9 48-64.4 48h-335.2C28.9 902 0 880.5 0 854V542c0-26.5 28.9-48 64.4-48h335.2C435.1 494 464 515.5 464 542zm0 940v256c0 26.5-28.9 48-64.4 48h-335.2C28.9 1304 0 1282.5 0 1256V940c0-26.5 28.9-48 64.4-48h335.2C435.1 892 464 913.5 464 940z'
+  
+  
+  target_url <- "https://www.google.com"
+  custom_button <- list(
+    name  = "Link to CYSTAT-DB", # Tooltip text when hovering over the button
+    icon = list('height' = 928.6, 
+                'width' = 1000, 
+                'path' = cystatdb_icon
+    ),
+    click= htmlwidgets::JS( paste0(" function() {window.open('", target_url, "', '_blank');}") )
+  )
+  
+  
   fig <- plot_ly() %>%
-    config(locale = 'el') %>%
+    config(
+      locale = 'el',
+      modeBarButtons = list(list('toImage', custom_button)),
+      displaylogo = FALSE
+    ) %>%
     add_trace(
       data = dt,
       x = ~Date,
@@ -213,12 +240,7 @@ if (status == 1) {
         size = 14,
         color = "black"
       ),
-      margin = list(
-        l = 100,
-        r = 100,
-        b = 50,
-        t = 50
-      ),
+      margin = list(l = 100, r = 100, b = 50, t = 50),
       hovermode = "x unified",
       hoverlabel = list(
         bgcolor = "white",      
