@@ -50,8 +50,8 @@ csv_changes <- paste0(logs_dir,"/DT_Hashes.csv")
 # ##############################################################################
 # [C] LOGS
 logfile <- file(paste0(logs_dir,"/Log_InteractiveGraphs_",datetime,".txt"))
-sink(logfile, append = FALSE, type = c("output"), split=FALSE)
-sink(logfile, append = FALSE, type = c("message"), split=FALSE)
+# sink(logfile, append = FALSE, type = c("output"), split=FALSE)
+# sink(logfile, append = FALSE, type = c("message"), split=FALSE)
 
 cat("\n")
 cat("################################################\n")
@@ -254,7 +254,7 @@ if (status == 1) {
       )
     )
   
-  # fig
+  fig
   
   
   htmlwidgets::saveWidget(fig, paste0(graph_dir,"/noborder_",html_fname), 
@@ -279,15 +279,19 @@ if (status == 1) {
     jsCode = "
     function(el, x) {
       el.parentElement.style.border = '3px solid black';
-      var mainSvg = el.querySelector('.main-svg');
-      if (mainSvg) {
-        mainSvg.style.width = '99%';
-        mainSvg.style.height = '99%';
-        Plotly.relayout(el, {}); 
-      }
+      el.parentElement.style.marginLeft = '100px';
+      el.parentElement.style.marginRight = '100px';
+      //var mainSvg = el.querySelector('.main-svg');
+      //if (mainSvg) {
+      //  mainSvg.style.width = '99%';
+      //  mainSvg.style.height = '99%';
+      //}
+      Plotly.relayout(el, {}); 
     }
   "
   )
+  
+  fig_with_border
   
   htmlwidgets::saveWidget(
     widget = fig_with_border,
@@ -296,7 +300,7 @@ if (status == 1) {
     selfcontained = TRUE
   )
   
-  # fig_with_border
+
   
 }
 
