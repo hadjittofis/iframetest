@@ -4,7 +4,7 @@
 ################################################
 
 
-Start Time:  2025-11-27 01:42:17
+Start Time:  2025-11-27 16:14:56.596365
 
 [01] Get API metadata... 
 
@@ -16,16 +16,16 @@ Warning message:
 In pxweb_as_data_frame.pxweb_data(x, row.names = row.names, optional = optional,  :
   NAs introduced by coercion
           used (Mb) gc trigger  (Mb) max used (Mb)
-Ncells 1018968 54.5    1978855 105.7  1534414 82.0
-Vcells 1713026 13.1    8388608  64.0  3177458 24.3
+Ncells 1023915 54.7    2081201 111.2  1343382 71.8
+Vcells 2513286 19.2    8388608  64.0  3628390 27.7
 
 [03] Hashing data and comparing to prev version... 
       - Current Hash... 
       - Previous Hashes... 
-      -- Current Hash != Previous hash, hence RE-CREATE graph 
+      -- No Previous hashes file found, hence CREATE file AND graph 
           used (Mb) gc trigger  (Mb) max used (Mb)
-Ncells 1061503 56.7    1978855 105.7  1534414 82.0
-Vcells 1832200 14.0    8388608  64.0  3177458 24.3
+Ncells 1027164 54.9    2081201 111.2  1343382 71.8
+Vcells 2523323 19.3    8388608  64.0  3628390 27.7
 
 [04] Cleaning data... 
       - Identify and rename 'value' column (from' Arrivals of Tourists, Monthly ') 
@@ -33,19 +33,23 @@ Vcells 1832200 14.0    8388608  64.0  3177458 24.3
       - Identify and format 'Date' column (from' MONTH ') 
       - Finalised Table to be plotted, now having the following structure 
 -------------------------------------------------------------------------- 
-         Date  Perc Number
-       <Date> <num>  <num>
-1: 2025-08-01   8.5 602026
-2: 2025-09-01  12.0 570635
-3: 2025-10-01  17.1 537744
+         Date Number  Perc
+       <Date>  <num> <num>
+1: 2025-08-01 602026   8.5
+2: 2025-09-01 570635  12.0
+3: 2025-10-01 537744  17.1
 -------------------------------------------------------------------------- 
 
 [05] Plotting data... 
-#### Graph saved to: /home/runner/work/iframetest/iframetest/docs//Tourism.html
+      - Create custom button for linking to CYSTAT DB: 
+       -->  https://www.google.com 
+      - Creating plot... 
+      - Adding Border and Margin... 
+#### Graph saved to: C:/work files/R/Packages/iframetest/docs/Tourism_EN.html
 
 
-END Time: 2025-11-27 01:42:22
-Time taken for code to run: 4.82353544235229 secs
+END Time: 2025-11-27 16:14:59.683475
+Time taken for code to run: 3.08711004257202 secs
 
 FINISHED!
 
