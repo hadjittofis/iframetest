@@ -1,0 +1,57 @@
+
+################################################
+### CREATE INTERACTIVE GRAPHS FROM CYSTAT DB ###
+################################################
+
+
+Start Time:  2025-11-28 01:41:58
+
+[01] Get API metadata... 
+
+[02] Get API data... 
+      - Build API query... 
+      - Get data via API... 
+      - Data in tabular format... 
+Warning message:
+In pxweb_as_data_frame.pxweb_data(x, row.names = row.names, optional = optional,  :
+  NAs introduced by coercion
+          used (Mb) gc trigger  (Mb) max used (Mb)
+Ncells 1023729 54.7    1992458 106.5  1534414 82.0
+Vcells 1721729 13.2    8388608  64.0  3207266 24.5
+
+[03] Hashing data and comparing to prev version... 
+      - Current Hash... 
+      - Previous Hashes... 
+      -- Current Hash != Previous hash, hence RE-CREATE graph 
+          used (Mb) gc trigger  (Mb) max used (Mb)
+Ncells 1066258 57.0    1992458 106.5  1534414 82.0
+Vcells 1840907 14.1    8388608  64.0  3207266 24.5
+
+[04] Cleaning data... 
+      - Identify and rename 'value' column (from' Arrivals of Tourists, Monthly ') 
+      - Transposing the data on column ' MEASURE ' 
+      - Identify and format 'Date' column (from' MONTH ') 
+      - Finalised Table to be plotted, now having the following structure 
+-------------------------------------------------------------------------- 
+         Date Number  Perc
+       <Date>  <num> <num>
+1: 2025-08-01 602026   8.5
+2: 2025-09-01 570635  12.0
+3: 2025-10-01 537744  17.1
+-------------------------------------------------------------------------- 
+
+[05] Plotting data... 
+      - Create custom button for linking to CYSTAT DB: 
+       -->  https://www.google.com 
+      - Creating plot... 
+      - Adding Border and Margin... 
+#### Graph saved to: /home/runner/work/iframetest/iframetest/docs//Tourism_EN.html
+
+
+END Time: 2025-11-28 01:42:02
+Time taken for code to run: 4.63306927680969 secs
+
+FINISHED!
+
+################################################
+
