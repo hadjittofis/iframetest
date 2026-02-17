@@ -70,11 +70,11 @@ options_fig <- list(
   ),
   showlegend = FALSE,
   legend = list(
-    orientation = "h",
     x = 0.5,
+    y = -0.07,
     xanchor = "center",
-    y = -0.05,
     yanchor = "top",
+    orientation = "h",
     itemwidth = 120
   ),
   show_updmenu = TRUE,

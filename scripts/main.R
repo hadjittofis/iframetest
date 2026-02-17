@@ -31,7 +31,7 @@ subthemes <- c("RandD","Inflation","Tourism")
 langs <- c("en", "el")
 
 
-# ##############################################################################
+##############################################################################
 # [C] LOGS
 logfile <- file(paste0(logs_dir,"/Log_InteractiveGraphs_",datetime,".txt"))
 sink(logfile, append = FALSE, type = c("output"), split=FALSE)

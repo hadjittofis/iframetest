@@ -4,7 +4,7 @@
 ################################################
 
 
-Start Time:  2026-02-17 11:30:14
+Start Time:  2026-02-17 15:01:23.450149
 
 ----->> Load previous Hashes file...
 
@@ -22,50 +22,35 @@ Start Time:  2026-02-17 11:30:14
 [03] Hashing data and comparing to prev version...
 -    Current Hash...
 -    Check previous Hashes...
--    -- Current Hash != Previous hash, hence RE-CREATE graph
+-    -- No Previous hashes file found, hence CREATE file AND graph
 [04] Cleaning data...
 -    Identify and rename 'value' column (from'Main Indicators for Research and Development, Annual')
 -    Transposing the data on columns 'INDICATOR'
 -    Identify and format 'Date' column (from'YEAR')
 -    Finalised Table to be plotted, now having the following structure:
 ==========================================================================
-         Date R&D personnel, by field of science: Natural Sciences
-       <Date>                                                <num>
-1: 2021-01-01                                                  965
-2: 2022-01-01                                                  986
-3: 2023-01-01                                                  995
-   R&D personnel, by field of science: Engineering and Technology
-                                                            <num>
-1:                                                            604
-2:                                                            619
-3:                                                            623
-   R&D personnel, by field of science: Medical Sciences
-                                                  <num>
-1:                                                  112
-2:                                                  111
-3:                                                  114
-   R&D personnel, by field of science: Agricultural Sciences
-                                                       <num>
-1:                                                       150
-2:                                                       148
-3:                                                       178
-   R&D personnel, by field of science: Social Sciences
-                                                 <num>
-1:                                                 305
-2:                                                 288
-3:                                                 291
-   R&D personnel, by field of science: Humanities
-                                            <num>
-1:                                            114
-2:                                            110
-3:                                            107
+         Date R&D personnel, by field of science: Natural Sciences R&D personnel, by field of science: Engineering and Technology
+       <Date>                                                <num>                                                          <num>
+1: 2021-01-01                                                  965                                                            604
+2: 2022-01-01                                                  986                                                            619
+3: 2023-01-01                                                  995                                                            623
+   R&D personnel, by field of science: Medical Sciences R&D personnel, by field of science: Agricultural Sciences
+                                                  <num>                                                     <num>
+1:                                                  112                                                       150
+2:                                                  111                                                       148
+3:                                                  114                                                       178
+   R&D personnel, by field of science: Social Sciences R&D personnel, by field of science: Humanities
+                                                 <num>                                          <num>
+1:                                                 305                                            114
+2:                                                 288                                            110
+3:                                                 291                                            107
 ==========================================================================
 [05] Plotting data...
 -    Create custom button for linking to CYSTAT DB:
       --> https://cystatdb23px.cystat.gov.cy:443/sq/8af15361-db42-4803-bde8-dfcc5ea01708
 -    Creating plot...
 -    Adding Border and Margin...
------>> Graph saved to: /home/runner/work/iframetest/iframetest/docs//RandD_EN.html
+----->> Graph saved to: C:/work_files/99.Git/External/iframetest/docs/RandD_EN.html
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
     LANGUAGE: EL (RandD)
@@ -78,50 +63,35 @@ Start Time:  2026-02-17 11:30:14
 [03] Hashing data and comparing to prev version...
 -    Current Hash...
 -    Check previous Hashes...
--    -- Current Hash != Previous hash, hence RE-CREATE graph
+-    -- No Previous hashes file found, hence CREATE file AND graph
 [04] Cleaning data...
 -    Identify and rename 'value' column (from'Βασικοί Δείκτες για την Έρευνα και Ανάπτυξη, Ετήσια')
 -    Transposing the data on columns 'ΔΕΙΚΤΗΣ'
 -    Identify and format 'Date' column (from'ΕΤΟΣ')
 -    Finalised Table to be plotted, now having the following structure:
 ==========================================================================
-         Date Ερευνητικό δυναμικό, κατά τομέα επιστήμης: Θετικές Επιστήμες
-       <Date>                                                        <num>
-1: 2021-01-01                                                          965
-2: 2022-01-01                                                          986
-3: 2023-01-01                                                          995
-   Ερευνητικό δυναμικό, κατά τομέα επιστήμης: Επιστήμες Μηχανικού
-                                                            <num>
-1:                                                            604
-2:                                                            619
-3:                                                            623
-   Ερευνητικό δυναμικό, κατά τομέα επιστήμης: Ιατρικές Επιστήμες
-                                                           <num>
-1:                                                           112
-2:                                                           111
-3:                                                           114
-   Ερευνητικό δυναμικό, κατά τομέα επιστήμης: Αγροτικές Επιστήμες
-                                                            <num>
-1:                                                            150
-2:                                                            148
-3:                                                            178
-   Ερευνητικό δυναμικό, κατά τομέα επιστήμης: Κοινωνικές Επιστήμες
-                                                             <num>
-1:                                                             305
-2:                                                             288
-3:                                                             291
-   Ερευνητικό δυναμικό, κατά τομέα επιστήμης: Ανθρωπιστικές Επιστήμες
-                                                                <num>
-1:                                                                114
-2:                                                                110
-3:                                                                107
+         Date Ερευνητικό δυναμικό, κατά τομέα επιστήμης: Θετικές Επιστήμες Ερευνητικό δυναμικό, κατά τομέα επιστήμης: Επιστήμες Μηχανικού
+       <Date>                                                        <num>                                                          <num>
+1: 2021-01-01                                                          965                                                            604
+2: 2022-01-01                                                          986                                                            619
+3: 2023-01-01                                                          995                                                            623
+   Ερευνητικό δυναμικό, κατά τομέα επιστήμης: Ιατρικές Επιστήμες Ερευνητικό δυναμικό, κατά τομέα επιστήμης: Αγροτικές Επιστήμες
+                                                           <num>                                                          <num>
+1:                                                           112                                                            150
+2:                                                           111                                                            148
+3:                                                           114                                                            178
+   Ερευνητικό δυναμικό, κατά τομέα επιστήμης: Κοινωνικές Επιστήμες Ερευνητικό δυναμικό, κατά τομέα επιστήμης: Ανθρωπιστικές Επιστήμες
+                                                             <num>                                                              <num>
+1:                                                             305                                                                114
+2:                                                             288                                                                110
+3:                                                             291                                                                107
 ==========================================================================
 [05] Plotting data...
 -    Create custom button for linking to CYSTAT DB:
       --> https://cystatdb23px.cystat.gov.cy:443/sq/e14dcc06-917e-411a-ac3f-15b3480a285d
 -    Creating plot...
 -    Adding Border and Margin...
------>> Graph saved to: /home/runner/work/iframetest/iframetest/docs//RandD_EL.html
+----->> Graph saved to: C:/work_files/99.Git/External/iframetest/docs/RandD_EL.html
 
 
 
@@ -139,7 +109,7 @@ Start Time:  2026-02-17 11:30:14
 [03] Hashing data and comparing to prev version...
 -    Current Hash...
 -    Check previous Hashes...
--    -- Current Hash != Previous hash, hence RE-CREATE graph
+-    -- No Previous hashes file found, hence CREATE file AND graph
 [04] Cleaning data...
 -    Identify and rename 'value' column (from'Inflation, Annual')
 -    Will NOT be transposing the data...
@@ -157,7 +127,7 @@ Start Time:  2026-02-17 11:30:14
       --> https://cystatdb23px.cystat.gov.cy:443/sq/67ef91a3-0296-4040-a059-0701223b68a0
 -    Creating plot...
 -    Adding Border and Margin...
------>> Graph saved to: /home/runner/work/iframetest/iframetest/docs//Inflation_EN.html
+----->> Graph saved to: C:/work_files/99.Git/External/iframetest/docs/Inflation_EN.html
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
     LANGUAGE: EL (Inflation)
@@ -170,7 +140,7 @@ Start Time:  2026-02-17 11:30:14
 [03] Hashing data and comparing to prev version...
 -    Current Hash...
 -    Check previous Hashes...
--    -- Current Hash != Previous hash, hence RE-CREATE graph
+-    -- No Previous hashes file found, hence CREATE file AND graph
 [04] Cleaning data...
 -    Identify and rename 'value' column (from'Πληθωρισμός, Ετήσια')
 -    Will NOT be transposing the data...
@@ -188,7 +158,7 @@ Start Time:  2026-02-17 11:30:14
       --> https://cystatdb23px.cystat.gov.cy:443/sq/8c2b489f-78c9-4b88-ad1d-27d8e71f2819
 -    Creating plot...
 -    Adding Border and Margin...
------>> Graph saved to: /home/runner/work/iframetest/iframetest/docs//Inflation_EL.html
+----->> Graph saved to: C:/work_files/99.Git/External/iframetest/docs/Inflation_EL.html
 
 
 
@@ -206,7 +176,7 @@ Start Time:  2026-02-17 11:30:14
 [03] Hashing data and comparing to prev version...
 -    Current Hash...
 -    Check previous Hashes...
--    -- Current Hash != Previous hash, hence RE-CREATE graph
+-    -- No Previous hashes file found, hence CREATE file AND graph
 [04] Cleaning data...
 -    Identify and rename 'value' column (from'Arrivals of Tourists, Monthly')
 -    Transposing the data on columns 'MEASURE'
@@ -224,7 +194,7 @@ Start Time:  2026-02-17 11:30:14
       --> https://cystatdb23px.cystat.gov.cy:443/sq/a6c94e17-57a4-4c11-a886-2629ffa73615
 -    Creating plot...
 -    Adding Border and Margin...
------>> Graph saved to: /home/runner/work/iframetest/iframetest/docs//Tourism_EN.html
+----->> Graph saved to: C:/work_files/99.Git/External/iframetest/docs/Tourism_EN.html
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
     LANGUAGE: EL (Tourism)
@@ -237,7 +207,7 @@ Start Time:  2026-02-17 11:30:14
 [03] Hashing data and comparing to prev version...
 -    Current Hash...
 -    Check previous Hashes...
--    -- Current Hash != Previous hash, hence RE-CREATE graph
+-    -- No Previous hashes file found, hence CREATE file AND graph
 [04] Cleaning data...
 -    Identify and rename 'value' column (from'Αφίξεις Τουριστών, Μηνιαία')
 -    Transposing the data on columns 'ΜΕΤΡΟ'
@@ -255,7 +225,7 @@ Start Time:  2026-02-17 11:30:14
       --> https://cystatdb23px.cystat.gov.cy:443/sq/4721a586-85e0-4c5e-ab24-dcf085ed0bf7
 -    Creating plot...
 -    Adding Border and Margin...
------>> Graph saved to: /home/runner/work/iframetest/iframetest/docs//Tourism_EL.html
+----->> Graph saved to: C:/work_files/99.Git/External/iframetest/docs/Tourism_EL.html
 
 
 
@@ -270,13 +240,13 @@ Warning messages:
 
 
 
-END Time: 2026-02-17 11:30:37
-Time taken for code to run: 23.1015820503235 secs
+END Time: 2026-02-17 15:01:47.302272
+Time taken for code to run: 23.8521230220795 secs
 
 FINISHED!
 
 ##############################################################################
 
           used (Mb) gc trigger  (Mb) max used  (Mb)
-Ncells 1295434 69.2    2760312 147.5  2760312 147.5
-Vcells 2322327 17.8    8388608  64.0  4272704  32.6
+Ncells 1583261 84.6    2462457 131.6  2462457 131.6
+Vcells 3607364 27.6    8388608  64.0  5503223  42.0

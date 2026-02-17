@@ -92,11 +92,11 @@ options_fig <- list(
   ),
   showlegend = TRUE,
   legend = list(
-    orientation = "h",
     x = 0.5,
+    y = -0.07,
     xanchor = "center",
-    y = -0.05,
     yanchor = "top",
+    orientation = "h",
     itemwidth = 120
   ),
   show_updmenu = FALSE,
@@ -106,7 +106,7 @@ options_fig <- list(
   ),
   xaxis = list(
     xaxis_h = "",      # x-axis header
-    xaxis_la = -45,         # x-axis angle of labels
+    xaxis_la = 0,         # x-axis angle of labels
     xaxis_rs_v = FALSE,      # should a rangslider appear on the x-axis?
     xaxis_rs_t = "date",    # type of rangeslider
     xaxis_rs_c = "white",   # background color of rangeslider
