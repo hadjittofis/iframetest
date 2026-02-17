@@ -58,7 +58,10 @@ options_fig <- list(
     hover_c = "black",  # hover font color
     hover_b = "black",  # hover border color
     hover_bg = "white",     # hover background color
-    hover_xf = "Year: %Y"      # hover format of x-axis data
+    hover_xf = list(
+      en="Year: %Y",
+      el="Έτος: %Y"
+    )      # hover format of x-axis data
   ),
   spikeline = list(
     spike_t = 'dash',      # spikeline type

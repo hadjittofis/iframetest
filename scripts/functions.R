@@ -201,7 +201,7 @@ cystat_plotly <- function(data_dt="dt", lang, xcol, ycols, options_fig){
                
                 xaxis = list(
                   title = options_fig$xaxis$xaxis_h,
-                  hoverformat = options_fig$hover$hover_xf,
+                  hoverformat = options_fig$hover$hover_xf[[lang]],
                   range = if(options_fig$gen$chart_type=="line"){
                     c(initial_start, initial_end)
                     }else{NULL},
