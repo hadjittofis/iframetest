@@ -1,9 +1,21 @@
 
 
 # ###########################################################################################################
-# Create date fields out of text fields of the form "2021M09"
-cystat_date <- function (date) { 
-  as.Date(paste0(substr(date, 1, 4), "-", substr(date, 6, 7), "-01")) 
+# Create date fields out of text fields of the form "2021" or "2021M09"
+cystat_date <- function (dtname, datecol) { 
+  
+  dtinner <- copy(eval(parse(text=dtname)))
+  dtinner[, dateinner := as.character(eval(parse(text=datecol)))]
+  
+  date_nchar <- dtinner[!is.na(dateinner), nchar(dateinner)][1]
+  if(date_nchar==4){ # Annual data (e.g. "2021")
+    dtinner[, Date := as.Date(paste0(dateinner, "-01-01")) ]
+  }else if(date_nchar==7){ # Monthly data (e.g. "2021M09")
+    dtinner[, Date := as.Date(paste0(substr(dateinner, 1, 4), "-", substr(dateinner, 6, 7), "-01")) ]
+  }
+  dtinner[, dateinner := NULL]
+  
+  return(dtinner)
 }
 
 
@@ -71,7 +83,7 @@ cystat_add_bordermargin <- function(figure, fig_ADD_BORDER, fig_ADD_MARGIN){
           }
         };
         
-        setTimeout(fixLayout, 50);
+        setTimeout(fixLayout, 100);
       }
     ")
 
@@ -84,77 +96,120 @@ cystat_add_bordermargin <- function(figure, fig_ADD_BORDER, fig_ADD_MARGIN){
 
 
 # ###########################################################################################################
-# create plotly figure
-cystat_plotly <- function(data_dt, lang, xcol, ycols, options_fig){
+# Create Plotly figure - Bar or Line Chart
+cystat_plotly <- function(data_dt="dt", lang, xcol, ycols, options_fig){
   
-  buttons_list <- list()
+  dt_inn <- copy(eval(parse(text=data_dt)))
+  
+  if(options_fig$show_updmenu){ buttons_list <- list() }
+  
   for(t in 1:length(ycols)){
-    if(t == 1){
-      vis <- TRUE # Make the first trace visible by default
-    } else {
-      vis <- 'legendonly' # Hide subsequent traces by default
+    
+    if(options_fig$show_updmenu){
+      if(t == 1){
+        vis <- TRUE # Make the first trace visible by default
+      } else {
+        vis <- 'legendonly' # Hide subsequent traces by default
+      }
     }
     
     fig <- add_trace( fig,
-                      data = dt,
-                      x = dt[[xcol]],
-                      y = dt[[ycols[t]]],
+                      data = dt_inn,
+                      x = dt_inn[[xcol]],
+                      y = dt_inn[[ycols[t]]],
                       hovertemplate = paste0(
-                        "<b>",options_fig$trace[[t]][[lang]]$hover_h,":</b> %",options_fig$trace[[t]]$hover_f,
-                        "<extra></extra>"),
+                        options_fig$trace[[t]][[lang]]$hover_h,": <b>%", 
+                        options_fig$trace[[t]]$hover_f,
+                        "</b>","<extra></extra>"),
                       type = options_fig$trace[[t]]$type,
-                      mode = options_fig$trace[[t]]$mode,
                       name = options_fig$trace[[t]][[lang]]$yaxis_h,
-                      line = list(color = options_fig$trace[[t]]$line_c,
-                                  width = options_fig$trace[[t]]$line_s,
-                                  dash = options_fig$trace[[t]]$line_t
-                                  ),
-                      marker = list(color = options_fig$trace[[t]]$point_c,
-                                    size = options_fig$trace[[t]]$point_s,
-                                    symbol = options_fig$trace[[t]]$point_t
-                                    ),
-                      visible = vis)
+                      visible = if(options_fig$show_updmenu){vis}else{NULL},
+                      
+                      marker = if(options_fig$gen$chart_type=="line"){
+                        list(color = options_fig$trace[[t]]$point_c,
+                             size = options_fig$trace[[t]]$point_s,
+                             symbol = options_fig$trace[[t]]$point_t
+                             )
+                        }else if(options_fig$gen$chart_type=="bar"){
+                          list(color = options_fig$trace[[t]]$bar_c)
+                        }else{NULL},
+                      
+                      mode = if(options_fig$gen$chart_type=="line"){
+                        options_fig$trace[[t]]$mode
+                        }else{NULL},  
+                      
+                      line = if(options_fig$gen$chart_type=="line"){
+                        list(color = options_fig$trace[[t]]$line_c,
+                             width = options_fig$trace[[t]]$line_s,
+                             dash = options_fig$trace[[t]]$line_t)
+                        }else{NULL}
+                      )
     
-    
-    buttons_list[[t]] <- list(label = options_fig$trace[[t]][[lang]]$buttn_h,
-                              method = "update",
-                              args = list(list(visible = c(ycols==ycols[t])),
-                                          list(yaxis = list(title = list(text=options_fig$trace[[t]][[lang]]$yaxis_h, 
-                                                                         standoff = options_fig$gen$standoff)))))
+    if(options_fig$show_updmenu){
+      buttons_list[[t]] <- list(label = options_fig$trace[[t]][[lang]]$buttn_h,
+                                method = "update",
+                                args = list(list(visible = c(ycols==ycols[t])),
+                                            list(yaxis = list(title = list(text=options_fig$trace[[t]][[lang]]$yaxis_h, 
+                                                                           standoff = options_fig$gen$standoff)))))
+    }
+    if(options_fig$show_updmenu){
+      rm(vis)
+    }
   }
   
   fig <- layout(fig,
-                title = list(text=options_pxf[[lang]]$col_value),
-                showlegend=FALSE,
+                title = list(text=options_fig$title[[lang]]),
+                showlegend = options_fig$showlegend,
+                legend = if(options_fig$showlegend){
+                  list(
+                    orientation = options_fig$legend$orientation,
+                    x = options_fig$legend$x,
+                    xanchor = options_fig$legend$xanchor,
+                    y = options_fig$legend$y,
+                    yanchor = options_fig$legend$yanchor,
+                    itemwidth = options_fig$legend$itemwidth,
+                    font = list(size = options_fig$fonts$font_s - 1)
+                  )
+                },
                 font = list(
                   family = options_fig$fonts$font_t,
                   size = options_fig$fonts$font_s,
                   color = options_fig$fonts$font_c
                 ),
+                separators = ',.',
                 hovermode = options_fig$hover$hover_t,
                 hoverlabel = list(
-                  bgcolor = options_fig$hover$hover_bg,     
+                  bgcolor = options_fig$hover$hover_bg,
                   font = list(color = options_fig$hover$hover_c),
                   bordercolor = options_fig$hover$hover_b
                 ),
                 margin = options_fig$gen$margin_b,
-                updatemenus = list(
+                barmode = if(options_fig$gen$chart_type=="bar"){
+                  options_fig$gen$bar_mode
+                },
+                updatemenus = if(options_fig$show_updmenu){
                   list(
-                    type = options_fig$updmenus$updm_t, 
-                    active = 0,
-                    xanchor = "left",
-                    x = options_fig$updmenus$updm_x,
-                    buttons = buttons_list
+                    list(
+                      type = options_fig$updmenus$updm_t,
+                      active = 0,
+                      xanchor = "left",
+                      x = options_fig$updmenus$updm_x,
+                      buttons = buttons_list
+                    )
                   )
-                ), # --END-- updatemenus
+                } else {NULL},     # --END-- updatemenus
+               
                 xaxis = list(
                   title = options_fig$xaxis$xaxis_h,
                   hoverformat = options_fig$hover$hover_xf,
-                  range = c(initial_start, initial_end),
+                  range = if(options_fig$gen$chart_type=="line"){
+                    c(initial_start, initial_end)
+                    }else{NULL},
+                  expand = options_fig$xaxis$xaxis_e,
                   fixedrange = FALSE,
                   tickangle = options_fig$xaxis$xaxis_la,
                   showspikes = TRUE,
-                  spikemode = "across",
+                  spikemode = "across+toaxis", # across
                   spikesnap = 'data',
                   spikecolor = options_fig$spikeline$spike_c,
                   spikethickness = options_fig$spikeline$spike_s,
@@ -162,20 +217,44 @@ cystat_plotly <- function(data_dt, lang, xcol, ycols, options_fig){
                   rangeslider = list(
                     visible = options_fig$xaxis$xaxis_rs_v,
                     type = options_fig$xaxis$xaxis_rs_t,
-                    range = c(min(dt$Date, na.rm=T), max(dt$Date, na.rm=T)),
+                    range = c(min(dt_inn$Date, na.rm=T), max(dt_inn$Date, na.rm=T)),
                     thickness = options_fig$xaxis$xaxis_rs_s,
                     bgcolor = options_fig$xaxis$xaxis_rs_c
                   )
                 ), # --END-- xaxis
+                
                 yaxis = list(
-                  title = list(text=options_fig$trace[[1]][[lang]]$yaxis_h, standoff = options_fig$gen$standoff),
+                  title = if(! options_fig$use_annotations){
+                    list(text = options_fig$yaxis[[lang]]$title,
+                         standoff = options_fig$gen$standoff
+                         )
+                    }else{NULL},
                   fixedrange = FALSE,
                   autorange = TRUE
-                ) # --END-- yaxis
+                ), # --END-- yaxis
+                
+                annotations = if(options_fig$use_annotations){ # for y-axis label to appear at the top, where the axis arrow ends
+                    list(
+                      x = options_fig$annotations$x,
+                      y = options_fig$annotations$y,
+                      xref = options_fig$annotations$xref,
+                      yref = options_fig$annotations$yref,
+                      text = options_fig$yaxis[[lang]]$title,
+                      showarrow = options_fig$annotations$showarrow,
+                      xanchor = options_fig$annotations$xanchor,
+                      yanchor = options_fig$annotations$yanchor,
+                      font = list(
+                        family = options_fig$fonts$font_t,
+                        size = options_fig$fonts$font_s,
+                        color = options_fig$fonts$font_c
+                      )
+                    )
+                  } # --END-- annotations
   )
-
+  
   return(fig)
 }
+
 
 
 

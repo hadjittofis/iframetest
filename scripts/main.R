@@ -27,7 +27,7 @@ dir.create( logs_dir <- here::here("logs/"), recursive=TRUE, showWarnings=FALSE)
 csv_changes <- paste0(logs_dir,"/DT_Hashes.csv")
 
 source(here::here("scripts/functions.R"))
-subthemes <- c("Tourism")
+subthemes <- c("RandD","Inflation","Tourism")
 langs <- c("en", "el")
 
 
@@ -58,6 +58,7 @@ if(file.exists(csv_changes)) {
 }
 
 for(subtheme in subthemes){
+# subtheme <- subthemes[1]
   
   cat("##############################################################################\n")
   cat(paste0("--- SUBTHEME: ",subtheme,"\n"))
@@ -65,6 +66,7 @@ for(subtheme in subthemes){
   source(here::here(paste0("scripts/options_",subtheme,".R")))
 
   for(lang in langs){
+    # lang <- langs[2]
     cat("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * \n")
     cat(paste0("    LANGUAGE: ",toupper(lang)," (",subtheme,")","\n"))
     cat("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * \n")
@@ -92,7 +94,7 @@ for(subtheme in subthemes){
     cat(paste0("-    Current Hash...","\n"))
     dt_raw <- serialize(dt, connection = NULL)
     current_hash <- sodium::bin2hex(sodium::hash(dt_raw))
-    
+
     cat(paste0("-    Check previous Hashes...","\n"))
     if(exists("previous_hashes")) {
       previous_hash <- previous_hashes[graph == subtheme & language == lang][1,hash]
@@ -113,8 +115,8 @@ for(subtheme in subthemes){
       cat(paste0("-    -- No Previous hashes file found, hence CREATE file AND graph","\n"))
       status = 1
     }
-    current_hash_dt <- data.table::data.table(graph = subtheme, language = lang, 
-                                              datetime = datetime, status = status, 
+    current_hash_dt <- data.table::data.table(graph = subtheme, language = lang,
+                                              datetime = datetime, status = status,
                                               hash = current_hash)
     current_hashes <- rbindlist(c(list(current_hashes),list(current_hash_dt)))
     setorderv(current_hashes, c("graph","language","datetime"), c(1,1,-1))
@@ -126,14 +128,15 @@ for(subtheme in subthemes){
       cat(paste0("-    Identify and rename 'value' column (from'",options_pxf[[lang]]$col_value,"')","\n"))
       setnames(dt, options_pxf[[lang]]$col_value, "Value")
       
-      if(nchar(options_pxf[[lang]]$col_trnsp)>0){
-        cat(paste0("-    Transposing the data on column '",options_pxf[[lang]]$col_trnsp,"'","\n"))
+      if(!is.null(options_pxf[[lang]]$col_trnsp)) {
+        cat(paste0("-    Transposing the data on columns '", paste(options_pxf[[lang]]$col_trnsp, collapse = "', '") ,"'","\n"))
+        
         eval(parse(text = paste0( "dt <- dcast(dt, ... ~ ", options_pxf[[lang]]$col_trnsp ,", value.var='Value')")))
-        if(length(options_pxf[[lang]]$col_trnsp_renamefrom)>0){
+        colsvalue <- unlist(options_pxf[[lang]]$col_trnsp_colnames)
+        if(!is.null(options_pxf[[lang]]$col_trnsp_renamefrom)){
+          idx <- match(colsvalue, options_pxf[[lang]]$col_trnsp_renamefrom)
+          colsvalue[!is.na(idx)] <- options_pxf[[lang]]$col_trnsp_renameto[idx[!is.na(idx)]]
           setnames(dt, c(options_pxf[[lang]]$col_trnsp_renamefrom), c(options_pxf[[lang]]$col_trnsp_renameto))
-          colsvalue <- options_pxf[[lang]]$col_trnsp_renameto
-        }else{
-          colsvalue <- options_pxf[[lang]]$col_trnsp_renamefrom
         }
       }else{
         cat(paste0("-    Will NOT be transposing the data...","\n"))
@@ -141,7 +144,7 @@ for(subtheme in subthemes){
       }
       
       cat(paste0("-    Identify and format 'Date' column (from'",options_pxf[[lang]]$col_date,"')","\n"))
-      dt[, Date := cystat_date( eval(parse(text=options_pxf[[lang]]$col_date)) )]
+      dt <- cystat_date(dtname = "dt", datecol = options_pxf[[lang]]$col_date)
       
       cat(paste0("-    Finalised Table to be plotted, now having the following structure:","\n"))
       cat(paste0("==========================================================================","\n"))
@@ -151,8 +154,8 @@ for(subtheme in subthemes){
 
       
       cat(paste0("[05] Plotting data...","\n"))
-      if(dt[,.N]>50){
-        nrows <- dt[,.N]
+      nrows <- dt[,.N]
+      if(nrows>50 & options_fig$xaxis$xaxis_rs_v){
         initial_start <- as.character(dt[nrows-50,Date])
         initial_end <- as.character(dt[nrows,Date])
       }else{
@@ -174,7 +177,7 @@ for(subtheme in subthemes){
                      displaylogo = FALSE)
       
       fig <- cystat_plotly(
-        data_dt = dt,
+        data_dt = "dt",
         lang = lang,
         xcol = "Date", 
         ycols = colsvalue, 
