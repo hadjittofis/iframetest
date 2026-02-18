@@ -4,7 +4,7 @@
 ################################################
 
 
-Start Time:  2026-02-17 13:05:10
+Start Time:  2026-02-18 12:42:30.707198
 
 ----->> Load previous Hashes file...
 
@@ -22,7 +22,7 @@ Start Time:  2026-02-17 13:05:10
 [03] Hashing data and comparing to prev version...
 -    Current Hash...
 -    Check previous Hashes...
--    -- Current Hash != Previous hash, hence RE-CREATE graph
+-    -- No Previous hashes file found, hence CREATE file AND graph
 [04] Cleaning data...
 -    Identify and rename 'value' column (from'Main Indicators for Research and Development, Annual')
 -    Transposing the data on columns 'INDICATOR'
@@ -39,33 +39,23 @@ Start Time:  2026-02-17 13:05:10
 1:                                                            604
 2:                                                            619
 3:                                                            623
-   R&D personnel, by field of science: Medical Sciences
-                                                  <num>
-1:                                                  112
-2:                                                  111
-3:                                                  114
-   R&D personnel, by field of science: Agricultural Sciences
-                                                       <num>
-1:                                                       150
-2:                                                       148
-3:                                                       178
-   R&D personnel, by field of science: Social Sciences
-                                                 <num>
-1:                                                 305
-2:                                                 288
-3:                                                 291
-   R&D personnel, by field of science: Humanities
-                                            <num>
-1:                                            114
-2:                                            110
-3:                                            107
+   R&D personnel, by field of science: Medical Sciences R&D personnel, by field of science: Agricultural Sciences
+                                                  <num>                                                     <num>
+1:                                                  112                                                       150
+2:                                                  111                                                       148
+3:                                                  114                                                       178
+   R&D personnel, by field of science: Social Sciences R&D personnel, by field of science: Humanities
+                                                 <num>                                          <num>
+1:                                                 305                                            114
+2:                                                 288                                            110
+3:                                                 291                                            107
 ==========================================================================
 [05] Plotting data...
 -    Create custom button for linking to CYSTAT DB:
       --> https://cystatdb23px.cystat.gov.cy:443/sq/8af15361-db42-4803-bde8-dfcc5ea01708
 -    Creating plot...
 -    Adding Border and Margin...
------>> Graph saved to: /home/runner/work/iframetest/iframetest/docs//RandD_EN.html
+----->> Graph saved to: C:/work_files/99.Git/External/iframetest/docs/RandD_EN.html
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
     LANGUAGE: EL (RandD)
@@ -78,7 +68,7 @@ Start Time:  2026-02-17 13:05:10
 [03] Hashing data and comparing to prev version...
 -    Current Hash...
 -    Check previous Hashes...
--    -- Current Hash != Previous hash, hence RE-CREATE graph
+-    -- No Previous hashes file found, hence CREATE file AND graph
 [04] Cleaning data...
 -    Identify and rename 'value' column (from'Βασικοί Δείκτες για την Έρευνα και Ανάπτυξη, Ετήσια')
 -    Transposing the data on columns 'ΔΕΙΚΤΗΣ'
@@ -121,7 +111,7 @@ Start Time:  2026-02-17 13:05:10
       --> https://cystatdb23px.cystat.gov.cy:443/sq/e14dcc06-917e-411a-ac3f-15b3480a285d
 -    Creating plot...
 -    Adding Border and Margin...
------>> Graph saved to: /home/runner/work/iframetest/iframetest/docs//RandD_EL.html
+----->> Graph saved to: C:/work_files/99.Git/External/iframetest/docs/RandD_EL.html
 
 
 
@@ -139,7 +129,7 @@ Start Time:  2026-02-17 13:05:10
 [03] Hashing data and comparing to prev version...
 -    Current Hash...
 -    Check previous Hashes...
--    -- Current Hash != Previous hash, hence RE-CREATE graph
+-    -- No Previous hashes file found, hence CREATE file AND graph
 [04] Cleaning data...
 -    Identify and rename 'value' column (from'Inflation, Annual')
 -    Will NOT be transposing the data...
@@ -157,7 +147,7 @@ Start Time:  2026-02-17 13:05:10
       --> https://cystatdb23px.cystat.gov.cy:443/sq/67ef91a3-0296-4040-a059-0701223b68a0
 -    Creating plot...
 -    Adding Border and Margin...
------>> Graph saved to: /home/runner/work/iframetest/iframetest/docs//Inflation_EN.html
+----->> Graph saved to: C:/work_files/99.Git/External/iframetest/docs/Inflation_EN.html
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
     LANGUAGE: EL (Inflation)
@@ -170,7 +160,7 @@ Start Time:  2026-02-17 13:05:10
 [03] Hashing data and comparing to prev version...
 -    Current Hash...
 -    Check previous Hashes...
--    -- Current Hash != Previous hash, hence RE-CREATE graph
+-    -- No Previous hashes file found, hence CREATE file AND graph
 [04] Cleaning data...
 -    Identify and rename 'value' column (from'Πληθωρισμός, Ετήσια')
 -    Will NOT be transposing the data...
@@ -188,7 +178,7 @@ Start Time:  2026-02-17 13:05:10
       --> https://cystatdb23px.cystat.gov.cy:443/sq/8c2b489f-78c9-4b88-ad1d-27d8e71f2819
 -    Creating plot...
 -    Adding Border and Margin...
------>> Graph saved to: /home/runner/work/iframetest/iframetest/docs//Inflation_EL.html
+----->> Graph saved to: C:/work_files/99.Git/External/iframetest/docs/Inflation_EL.html
 
 
 
@@ -206,7 +196,7 @@ Start Time:  2026-02-17 13:05:10
 [03] Hashing data and comparing to prev version...
 -    Current Hash...
 -    Check previous Hashes...
--    -- Current Hash != Previous hash, hence RE-CREATE graph
+-    -- No Previous hashes file found, hence CREATE file AND graph
 [04] Cleaning data...
 -    Identify and rename 'value' column (from'Arrivals of Tourists, Monthly')
 -    Transposing the data on columns 'MEASURE'
@@ -224,7 +214,7 @@ Start Time:  2026-02-17 13:05:10
       --> https://cystatdb23px.cystat.gov.cy:443/sq/a6c94e17-57a4-4c11-a886-2629ffa73615
 -    Creating plot...
 -    Adding Border and Margin...
------>> Graph saved to: /home/runner/work/iframetest/iframetest/docs//Tourism_EN.html
+----->> Graph saved to: C:/work_files/99.Git/External/iframetest/docs/Tourism_EN.html
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
     LANGUAGE: EL (Tourism)
@@ -237,7 +227,7 @@ Start Time:  2026-02-17 13:05:10
 [03] Hashing data and comparing to prev version...
 -    Current Hash...
 -    Check previous Hashes...
--    -- Current Hash != Previous hash, hence RE-CREATE graph
+-    -- No Previous hashes file found, hence CREATE file AND graph
 [04] Cleaning data...
 -    Identify and rename 'value' column (from'Αφίξεις Τουριστών, Μηνιαία')
 -    Transposing the data on columns 'ΜΕΤΡΟ'
@@ -255,7 +245,7 @@ Start Time:  2026-02-17 13:05:10
       --> https://cystatdb23px.cystat.gov.cy:443/sq/4721a586-85e0-4c5e-ab24-dcf085ed0bf7
 -    Creating plot...
 -    Adding Border and Margin...
------>> Graph saved to: /home/runner/work/iframetest/iframetest/docs//Tourism_EL.html
+----->> Graph saved to: C:/work_files/99.Git/External/iframetest/docs/Tourism_EL.html
 
 
 
@@ -270,13 +260,13 @@ Warning messages:
 
 
 
-END Time: 2026-02-17 13:05:34
-Time taken for code to run: 24.2476377487183 secs
+END Time: 2026-02-18 12:42:54.38283
+Time taken for code to run: 23.6756319999695 secs
 
 FINISHED!
 
 ##############################################################################
 
           used (Mb) gc trigger  (Mb) max used  (Mb)
-Ncells 1295434 69.2    2760312 147.5  2760312 147.5
-Vcells 2322327 17.8    8388608  64.0  4272766  32.6
+Ncells 1582920 84.6    2500217 133.6  2500217 133.6
+Vcells 3606897 27.6    8388608  64.0  5681233  43.4

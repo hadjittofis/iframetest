@@ -66,7 +66,7 @@ for(subtheme in subthemes){
   source(here::here(paste0("scripts/options_",subtheme,".R")))
 
   for(lang in langs){
-    # lang <- langs[2]
+    # lang <- langs[1]
     cat("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * \n")
     cat(paste0("    LANGUAGE: ",toupper(lang)," (",subtheme,")","\n"))
     cat("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * \n")
@@ -184,8 +184,35 @@ for(subtheme in subthemes){
         options_fig = options_fig
       )
       
+      
       cat(paste0("-    Adding Border and Margin...","\n"))
-      fig_final <- cystat_add_bordermargin(fig, options_fig$onRender$ADD_BORDER, options_fig$onRender$ADD_MARGIN)
+      fig_final <- prependContent(fig, tags$style(HTML(paste0("
+          /* Create border on overlapping containerS */
+          .svg-container {
+                border: ",options_fig$onRender$ADD_BORDER[[2]]," !important;
+            }
+          
+          
+          /* Let container of graph have a gap from the border of 20px */
+          #htmlwidget_container {
+            inset:20px !important;
+          }
+          
+          /* The actual graph area - issue when it is 100%, it engulfs our .svg-container border */
+          .main-svg {
+            width: 99% !important;
+            height: 99% !important;
+          }
+          
+          "))))
+      
+      # ###########################################
+      # The following no longer used - replace by prependContent function above, which targets existing plotly elements
+      # fig_final <- cystat_add_bordermargin(fig, 
+      #                                      options_fig$onRender$ADD_BORDER, 
+      #                                      options_fig$onRender$ADD_MARGIN)
+      # ###########################################
+      
       html_fname <- paste0(subtheme,"_",toupper(lang),".html")
       htmlwidgets::saveWidget(
         widget = fig_final,
@@ -193,6 +220,7 @@ for(subtheme in subthemes){
         libdir="lib",
         selfcontained = TRUE
       )
+      
       cat(paste0("----->> Graph saved to: ", graph_dir,"/",html_fname,"\n\n"))
       
       rm(colsvalue, nrows, initial_start, initial_end, custom_button, 

@@ -73,9 +73,10 @@ cystat_add_bordermargin <- function(figure, fig_ADD_BORDER, fig_ADD_MARGIN){
     jsCode_str <- paste0(jsCode_str,"
         // Force Plotly to recalculate its layout based on the parent's new dimensions
         // Use a timeout as a final safeguard, though it might not be necessary now.
+        
         var fixLayout = function() {
           Plotly.relayout(el, {});
-          
+        
           if (window.dispatchEvent) {
             window.dispatchEvent(new Event('resize'));
           } else { // For older IE
@@ -92,6 +93,8 @@ cystat_add_bordermargin <- function(figure, fig_ADD_BORDER, fig_ADD_MARGIN){
 
   return(figure)
 }
+
+
 
 
 
@@ -158,6 +161,7 @@ cystat_plotly <- function(data_dt="dt", lang, xcol, ycols, options_fig){
   }
   
   fig <- layout(fig,
+                autosize = TRUE,
                 title = list(text=options_fig$title[[lang]]),
                 showlegend = options_fig$showlegend,
                 legend = if(options_fig$showlegend){
