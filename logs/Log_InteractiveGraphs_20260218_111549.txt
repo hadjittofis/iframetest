@@ -1,0 +1,282 @@
+
+################################################
+### CREATE INTERACTIVE GRAPHS FROM CYSTAT DB ###
+################################################
+
+
+Start Time:  2026-02-18 11:15:49
+
+----->> Load previous Hashes file...
+
+##############################################################################
+--- SUBTHEME: RandD
+-    Loading Options...
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    LANGUAGE: EN (RandD)
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+[01] Get API metadata...
+[02] Get API data...
+-    Build API query...
+-    Get data via API...
+-    Data in tabular format...
+[03] Hashing data and comparing to prev version...
+-    Current Hash...
+-    Check previous Hashes...
+-    -- Current Hash != Previous hash, hence RE-CREATE graph
+[04] Cleaning data...
+-    Identify and rename 'value' column (from'Main Indicators for Research and Development, Annual')
+-    Transposing the data on columns 'INDICATOR'
+-    Identify and format 'Date' column (from'YEAR')
+-    Finalised Table to be plotted, now having the following structure:
+==========================================================================
+         Date R&D personnel, by field of science: Natural Sciences
+       <Date>                                                <num>
+1: 2021-01-01                                                  965
+2: 2022-01-01                                                  986
+3: 2023-01-01                                                  995
+   R&D personnel, by field of science: Engineering and Technology
+                                                            <num>
+1:                                                            604
+2:                                                            619
+3:                                                            623
+   R&D personnel, by field of science: Medical Sciences
+                                                  <num>
+1:                                                  112
+2:                                                  111
+3:                                                  114
+   R&D personnel, by field of science: Agricultural Sciences
+                                                       <num>
+1:                                                       150
+2:                                                       148
+3:                                                       178
+   R&D personnel, by field of science: Social Sciences
+                                                 <num>
+1:                                                 305
+2:                                                 288
+3:                                                 291
+   R&D personnel, by field of science: Humanities
+                                            <num>
+1:                                            114
+2:                                            110
+3:                                            107
+==========================================================================
+[05] Plotting data...
+-    Create custom button for linking to CYSTAT DB:
+      --> https://cystatdb23px.cystat.gov.cy:443/sq/8af15361-db42-4803-bde8-dfcc5ea01708
+-    Creating plot...
+-    Adding Border and Margin...
+----->> Graph saved to: /home/runner/work/iframetest/iframetest/docs//RandD_EN.html
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    LANGUAGE: EL (RandD)
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+[01] Get API metadata...
+[02] Get API data...
+-    Build API query...
+-    Get data via API...
+-    Data in tabular format...
+[03] Hashing data and comparing to prev version...
+-    Current Hash...
+-    Check previous Hashes...
+-    -- Current Hash != Previous hash, hence RE-CREATE graph
+[04] Cleaning data...
+-    Identify and rename 'value' column (from'Βασικοί Δείκτες για την Έρευνα και Ανάπτυξη, Ετήσια')
+-    Transposing the data on columns 'ΔΕΙΚΤΗΣ'
+-    Identify and format 'Date' column (from'ΕΤΟΣ')
+-    Finalised Table to be plotted, now having the following structure:
+==========================================================================
+         Date Ερευνητικό δυναμικό, κατά τομέα επιστήμης: Θετικές Επιστήμες
+       <Date>                                                        <num>
+1: 2021-01-01                                                          965
+2: 2022-01-01                                                          986
+3: 2023-01-01                                                          995
+   Ερευνητικό δυναμικό, κατά τομέα επιστήμης: Επιστήμες Μηχανικού
+                                                            <num>
+1:                                                            604
+2:                                                            619
+3:                                                            623
+   Ερευνητικό δυναμικό, κατά τομέα επιστήμης: Ιατρικές Επιστήμες
+                                                           <num>
+1:                                                           112
+2:                                                           111
+3:                                                           114
+   Ερευνητικό δυναμικό, κατά τομέα επιστήμης: Αγροτικές Επιστήμες
+                                                            <num>
+1:                                                            150
+2:                                                            148
+3:                                                            178
+   Ερευνητικό δυναμικό, κατά τομέα επιστήμης: Κοινωνικές Επιστήμες
+                                                             <num>
+1:                                                             305
+2:                                                             288
+3:                                                             291
+   Ερευνητικό δυναμικό, κατά τομέα επιστήμης: Ανθρωπιστικές Επιστήμες
+                                                                <num>
+1:                                                                114
+2:                                                                110
+3:                                                                107
+==========================================================================
+[05] Plotting data...
+-    Create custom button for linking to CYSTAT DB:
+      --> https://cystatdb23px.cystat.gov.cy:443/sq/e14dcc06-917e-411a-ac3f-15b3480a285d
+-    Creating plot...
+-    Adding Border and Margin...
+----->> Graph saved to: /home/runner/work/iframetest/iframetest/docs//RandD_EL.html
+
+
+
+##############################################################################
+--- SUBTHEME: Inflation
+-    Loading Options...
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    LANGUAGE: EN (Inflation)
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+[01] Get API metadata...
+[02] Get API data...
+-    Build API query...
+-    Get data via API...
+-    Data in tabular format...
+[03] Hashing data and comparing to prev version...
+-    Current Hash...
+-    Check previous Hashes...
+-    -- Current Hash != Previous hash, hence RE-CREATE graph
+[04] Cleaning data...
+-    Identify and rename 'value' column (from'Inflation, Annual')
+-    Will NOT be transposing the data...
+-    Identify and format 'Date' column (from'YEAR')
+-    Finalised Table to be plotted, now having the following structure:
+==========================================================================
+         Date Value
+       <Date> <num>
+1: 2023-01-01   3.5
+2: 2024-01-01   1.8
+3: 2025-01-01   0.1
+==========================================================================
+[05] Plotting data...
+-    Create custom button for linking to CYSTAT DB:
+      --> https://cystatdb23px.cystat.gov.cy:443/sq/67ef91a3-0296-4040-a059-0701223b68a0
+-    Creating plot...
+-    Adding Border and Margin...
+----->> Graph saved to: /home/runner/work/iframetest/iframetest/docs//Inflation_EN.html
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    LANGUAGE: EL (Inflation)
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+[01] Get API metadata...
+[02] Get API data...
+-    Build API query...
+-    Get data via API...
+-    Data in tabular format...
+[03] Hashing data and comparing to prev version...
+-    Current Hash...
+-    Check previous Hashes...
+-    -- Current Hash != Previous hash, hence RE-CREATE graph
+[04] Cleaning data...
+-    Identify and rename 'value' column (from'Πληθωρισμός, Ετήσια')
+-    Will NOT be transposing the data...
+-    Identify and format 'Date' column (from'ΕΤΟΣ')
+-    Finalised Table to be plotted, now having the following structure:
+==========================================================================
+         Date Value
+       <Date> <num>
+1: 2023-01-01   3.5
+2: 2024-01-01   1.8
+3: 2025-01-01   0.1
+==========================================================================
+[05] Plotting data...
+-    Create custom button for linking to CYSTAT DB:
+      --> https://cystatdb23px.cystat.gov.cy:443/sq/8c2b489f-78c9-4b88-ad1d-27d8e71f2819
+-    Creating plot...
+-    Adding Border and Margin...
+----->> Graph saved to: /home/runner/work/iframetest/iframetest/docs//Inflation_EL.html
+
+
+
+##############################################################################
+--- SUBTHEME: Tourism
+-    Loading Options...
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    LANGUAGE: EN (Tourism)
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+[01] Get API metadata...
+[02] Get API data...
+-    Build API query...
+-    Get data via API...
+-    Data in tabular format...
+[03] Hashing data and comparing to prev version...
+-    Current Hash...
+-    Check previous Hashes...
+-    -- Current Hash != Previous hash, hence RE-CREATE graph
+[04] Cleaning data...
+-    Identify and rename 'value' column (from'Arrivals of Tourists, Monthly')
+-    Transposing the data on columns 'MEASURE'
+-    Identify and format 'Date' column (from'MONTH')
+-    Finalised Table to be plotted, now having the following structure:
+==========================================================================
+         Date Number of Arrivals Annual change (%)
+       <Date>              <num>             <num>
+1: 2025-11-01             234580              30.4
+2: 2025-12-01             156959              18.0
+3: 2026-01-01             121625               8.5
+==========================================================================
+[05] Plotting data...
+-    Create custom button for linking to CYSTAT DB:
+      --> https://cystatdb23px.cystat.gov.cy:443/sq/a6c94e17-57a4-4c11-a886-2629ffa73615
+-    Creating plot...
+-    Adding Border and Margin...
+----->> Graph saved to: /home/runner/work/iframetest/iframetest/docs//Tourism_EN.html
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    LANGUAGE: EL (Tourism)
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+[01] Get API metadata...
+[02] Get API data...
+-    Build API query...
+-    Get data via API...
+-    Data in tabular format...
+[03] Hashing data and comparing to prev version...
+-    Current Hash...
+-    Check previous Hashes...
+-    -- Current Hash != Previous hash, hence RE-CREATE graph
+[04] Cleaning data...
+-    Identify and rename 'value' column (from'Αφίξεις Τουριστών, Μηνιαία')
+-    Transposing the data on columns 'ΜΕΤΡΟ'
+-    Identify and format 'Date' column (from'ΜΗΝΑΣ')
+-    Finalised Table to be plotted, now having the following structure:
+==========================================================================
+         Date Αριθμός Αφίξεων Ετήσια μεταβολή (%)
+       <Date>           <num>               <num>
+1: 2025-11-01          234580                30.4
+2: 2025-12-01          156959                18.0
+3: 2026-01-01          121625                 8.5
+==========================================================================
+[05] Plotting data...
+-    Create custom button for linking to CYSTAT DB:
+      --> https://cystatdb23px.cystat.gov.cy:443/sq/4721a586-85e0-4c5e-ab24-dcf085ed0bf7
+-    Creating plot...
+-    Adding Border and Margin...
+----->> Graph saved to: /home/runner/work/iframetest/iframetest/docs//Tourism_EL.html
+
+
+
+Warning messages:
+1: In pxweb_as_data_frame.pxweb_data(x, row.names = row.names, optional = optional,  :
+  NAs introduced by coercion
+2: In pxweb_as_data_frame.pxweb_data(x, row.names = row.names, optional = optional,  :
+  NAs introduced by coercion
+
+
+----->> Save new Hashes file...
+
+
+
+END Time: 2026-02-18 11:16:12
+Time taken for code to run: 23.4033811092377 secs
+
+FINISHED!
+
+##############################################################################
+
+          used (Mb) gc trigger  (Mb) max used  (Mb)
+Ncells 1295148 69.2    2757951 147.3  2757951 147.3
+Vcells 2321366 17.8    8388608  64.0  4266980  32.6
