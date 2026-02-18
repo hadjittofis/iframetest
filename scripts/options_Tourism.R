@@ -161,7 +161,8 @@ options_fig <- list(
     
   ),
   onRender = list(
-    ADD_BORDER = list(TRUE, "1px solid black") # border style
+    ADD_BORDER = list(TRUE, "1px solid black"), # border style
+    ADD_INSET = list(TRUE, "10px 100px 10px 100px") # border style
     # , 
     # ADD_MARGIN = list(TRUE, c('10px','100px','10px','100px')) # margins clockside from top - unused, replaced by inset=20px in prependContent function
   )  

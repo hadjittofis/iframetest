@@ -195,7 +195,7 @@ for(subtheme in subthemes){
           
           /* Let container of graph have a gap from the border of 20px */
           #htmlwidget_container {
-            inset:20px !important;
+            inset: ",options_fig$onRender$ADD_INSET[[2]]," !important;
           }
           
           /* The actual graph area - issue when it is 100%, it engulfs our .svg-container border */
