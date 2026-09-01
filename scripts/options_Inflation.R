@@ -2,15 +2,15 @@
 options_api <- list(
   en=list(
     subtheme = "Inflation",
-    db = "https://cystatdb23px.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
+    db = "https://cystatdb.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
     pxf = "Price Indices/Consumer Price Index/0410050E.px",
-    user_link ="https://cystatdb23px.cystat.gov.cy:443/sq/67ef91a3-0296-4040-a059-0701223b68a0"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/67ef91a3-0296-4040-a059-0701223b68a0"
   ),
   el=list(
     subtheme = "Inflation",
-    db = "https://cystatdb23px.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
+    db = "https://cystatdb.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
     pxf = "Price Indices/Consumer Price Index/0410050G.px",
-    user_link ="https://cystatdb23px.cystat.gov.cy:443/sq/8c2b489f-78c9-4b88-ad1d-27d8e71f2819"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/8c2b489f-78c9-4b88-ad1d-27d8e71f2819"
   )
 )
 

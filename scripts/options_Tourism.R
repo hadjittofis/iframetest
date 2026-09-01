@@ -2,15 +2,15 @@
 options_api <- list(
   en=list(
     subtheme = "Tourism",
-    db = "https://cystatdb23px.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
+    db = "https://cystatdb.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
     pxf = "Tourism/Tourists/Monthly/2021012E.px",
-    user_link ="https://cystatdb23px.cystat.gov.cy:443/sq/a6c94e17-57a4-4c11-a886-2629ffa73615"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/a6c94e17-57a4-4c11-a886-2629ffa73615"
   ),
   el=list(
     subtheme = "Tourism",
-    db = "https://cystatdb23px.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
+    db = "https://cystatdb.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
     pxf = "Tourism/Tourists/Monthly/2021012G.px",
-    user_link ="https://cystatdb23px.cystat.gov.cy:443/sq/4721a586-85e0-4c5e-ab24-dcf085ed0bf7"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/4721a586-85e0-4c5e-ab24-dcf085ed0bf7"
   )
 )
 

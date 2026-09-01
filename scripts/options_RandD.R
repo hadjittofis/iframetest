@@ -2,15 +2,15 @@
 options_api <- list(
   en=list(
     subtheme = "RandD",
-    db = "https://cystatdb23px.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
+    db = "https://cystatdb.cystat.gov.cy:443/api/v1/en/8.CYSTAT-DB/",
     pxf = "Research and Development/1200010E.px",
-    user_link ="https://cystatdb23px.cystat.gov.cy:443/sq/8af15361-db42-4803-bde8-dfcc5ea01708"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/8af15361-db42-4803-bde8-dfcc5ea01708"
   ),
   el=list(
     subtheme = "RandD",
-    db = "https://cystatdb23px.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
+    db = "https://cystatdb.cystat.gov.cy:443/api/v1/el/8.CYSTAT-DB/",
     pxf = "Research and Development/1200010G.px",
-    user_link ="https://cystatdb23px.cystat.gov.cy:443/sq/e14dcc06-917e-411a-ac3f-15b3480a285d"
+    user_link ="https://cystatdb.cystat.gov.cy:443/sq/e14dcc06-917e-411a-ac3f-15b3480a285d"
   )
 )
 
